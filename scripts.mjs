@@ -97,3 +97,53 @@ console.log("Sum of ages:", sumOfAges);
 //Use the result to calculate the average age.
 const averageAge = sumOfAges / data.length;
 console.log("Average age:", averageAge);
+
+//3. THINKING CRITICALLY
+
+//For this section, develop functions that accomplish the following:
+//Take an object and increment its age field.
+//Take an object, make a copy, and increment the age field of the copy. Return the copy.
+//For each of the functions above, if the object does not yet contain an age field, create one and set it to 0. 
+//Also, add (or modify, as appropriate) an updated_at field that stores a Date object with the current time.
+//Thought experiment: 
+//since the Date object is an object,
+// what would happen if we modified it in the copy of the object 
+//created in the second function using setTime() or another method? How could we circumvent potentially undesired behavior?
+
+function incrementAge(object) {
+    // Create age field if it doesn't exist
+    if (!object.hasOwnProperty('age')) {
+        object.age = 0;
+    }
+    // Increment age field
+    object.age++;
+    // Add or modify updated_at field with current time
+    object.updated_at = new Date();
+    return object;
+}
+
+function incrementAgeAndCopy(object) {
+    //Shallow copy of the object
+    const copy = { ...object };
+    //Age field 
+    if (!copy.hasOwnProperty('age')) {
+        copy.age = 0;
+    }
+    // Increment age field 
+    copy.age++;
+    // Add or modify updated_at field with current time
+    copy.updated_at = new Date();
+    return copy;
+}
+
+// Test the functions
+const obj1 = { name: "Alice" };
+console.log("Original object:", obj1);
+console.log("Result of incrementAge:", incrementAge(obj1));
+console.log("Original object after incrementAge:", obj1);
+
+const obj2 = { name: "Bob" };
+console.log("Original object:", obj2);
+console.log("Result of incrementAgeAndCopy:", incrementAgeAndCopy(obj2));
+console.log("Original object after incrementAgeAndCopy:", obj2);
+
