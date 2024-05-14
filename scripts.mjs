@@ -56,4 +56,44 @@ console.log(longestString(strings)); // Output: 'morning'
 console.log(stringsLongerThan(strings, 3)); // Output: ['hello', 'morning']
 printNumbers(5); // Output: 1 2 3 4 5
 
+//2. THINKING METHODICALLY
 
+
+//Use callback functions alongside Array methods to accomplish the following:
+//Sort the array by age.
+//Filter the array to remove entries with an age greater than 50.
+//Map the array to change the “occupation” key to “job” and increment every age by 1.
+//Use the reduce method to calculate the sum of the ages.
+//Then use the result to calculate the average age.
+
+const data = [
+    { id: "42", name: "Bruce", occupation: "Knight", age: "41" },
+    { id: "48", name: "Barry", occupation: "Runner", age: "25" },
+    { id: "57", name: "Bob", occupation: "Fry Cook", age: "19" },
+    { id: "63", name: "Blaine", occupation: "Quiz Master", age: "58" },
+    { id: "7", name: "Bilbo", occupation: "None", age: "111" }
+];
+
+//Sort the array by age.
+const sortedByAge = data.sort((a, b) => parseInt(a.age) - parseInt(b.age));
+console.log("Sorted by age:", sortedByAge);
+
+//Filter the array to remove entries with an age greater than 50.
+const filteredByAge = data.filter(entry => parseInt(entry.age) <= 50);
+console.log("Filtered by age:", filteredByAge);
+
+//Map the array to change the “occupation” key to “job” and increment every age by 1.
+const mappedData = data.map(entry => ({
+    ...entry,
+    job: entry.occupation,
+    age: parseInt(entry.age) + 1
+}));
+console.log("Mapped data:", mappedData);
+
+//Use the reduce method to calculate the sum of the ages.
+const sumOfAges = data.reduce((total, entry) => total + parseInt(entry.age), 0);
+console.log("Sum of ages:", sumOfAges);
+
+//Use the result to calculate the average age.
+const averageAge = sumOfAges / data.length;
+console.log("Average age:", averageAge);
